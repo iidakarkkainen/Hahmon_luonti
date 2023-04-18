@@ -1,0 +1,117 @@
+import java.io.*;
+import java.util.*;
+
+/**
+ * This program allows the user to create and save a character profile.
+ */
+public class CharacterCreation {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        try {
+            // Create a new character profile
+            Character character = createCharacter();
+
+            // Save the character profile to a file
+            saveCharacter(character);
+
+            System.out.println("Character profile saved successfully.");
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Creates a new character profile based on user input.
+     */
+    private static Character createCharacter() {
+        System.out.println("Create a new character profile");
+
+        // Get the character name
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+
+        // Get the character class
+        String[] classes = {"Warrior", "Mage", "Rogue"};
+        System.out.println("Classes: " + Arrays.toString(classes));
+        System.out.print("Class: ");
+        String characterClass = scanner.nextLine();
+
+        // Get the character level
+        System.out.print("Level: ");
+        int level = scanner.nextInt();
+        scanner.nextLine();
+
+        // Get the character attributes
+        Map<String, Integer> attributes = new HashMap<>();
+        String[] attributeNames = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
+        for (String attributeName : attributeNames) {
+            System.out.print(attributeName + ": ");
+            int attributeValue = scanner.nextInt();
+            scanner.nextLine();
+            attributes.put(attributeName, attributeValue);
+        }
+
+        // Create a new character object
+        Character character = new Character(name, characterClass, level, attributes);
+        return character;
+    }
+
+    /**
+     * Saves the character profile to a file.
+     */
+    private static void saveCharacter(Character character) throws IOException {
+        System.out.println("Saving character profile...");
+
+        // Get the file name
+        System.out.print("File name: ");
+        String fileName = scanner.nextLine();
+
+        // Open the file for writing
+        FileWriter writer = new FileWriter(fileName);
+
+        // Write the character profile to the file
+        writer.write("Name: " + character.getName() + "\n");
+        writer.write("Class: " + character.getCharacterClass() + "\n");
+        writer.write("Level: " + character.getLevel() + "\n");
+        for (String attributeName : character.getAttributes().keySet()) {
+            writer.write(attributeName + ": " + character.getAttributes().get(attributeName) + "\n");
+        }
+
+        // Close the file
+        writer.close();
+    }
+
+    /**
+     * Represents a character in the game.
+     */
+    private static class Character {
+        private String name;
+        private String characterClass;
+        private int level;
+        private Map<String, Integer> attributes;
+
+        public Character(String name, String characterClass, int level, Map<String, Integer> attributes) {
+            this.name = name;
+            this.characterClass = characterClass;
+            this.level = level;
+            this.attributes = attributes;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getCharacterClass() {
+            return characterClass;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        public Map<String, Integer> getAttributes() {
+            return attributes;
+        }
+    }
+}
