@@ -11,7 +11,7 @@ public class ver1 {
     public static void main(String[] args) {
         try {
             // Create a new character profile
-            Character character = createCharacter();
+            Character character = luoHahmo();
 
             // Save the character profile to a file
             saveCharacter(character);
@@ -23,24 +23,24 @@ public class ver1 {
     }
 
     /**
-     * Creates a new character profile based on user input.
+     * Luo uuden hahmon käyttäjän syötteen perusteella
      */
-    private static Character createCharacter() {
-        System.out.println("Create a new character profile");
+    private static Character luoHahmo() {
+        System.out.println("Luo uusi hahmo");
 
-        // Get the character name
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
+        // Hahmon nimi
+        System.out.print("Nimi: ");
+        String nimi = scanner.nextLine();
 
-        // Get the character class
-        String[] classes = {"Warrior", "Mage", "Rogue"};
-        System.out.println("Classes: " + Arrays.toString(classes));
-        System.out.print("Class: ");
-        String characterClass = scanner.nextLine();
+        // Hahmon hiukset
+        String[] hiukset  = {"lyhyt", "pitkä", "kalju"};
+        System.out.println("Hiusten pituus: " + Arrays.toString(hiukset));
+        System.out.print("Hiusten pituus: ");
+        String hiusPituus = scanner.nextLine();
 
-        // Get the character level
-        System.out.print("Level: ");
-        int level = scanner.nextInt();
+        // Hahmon ikä
+        System.out.print("Ikä: ");
+        int ikä = scanner.nextInt();
         scanner.nextLine();
 
         // Get the character attributes
@@ -54,7 +54,7 @@ public class ver1 {
         }
 
         // Create a new character object
-        Character character = new Character(name, characterClass, level, attributes);
+        Character character = new Character(nimi, hiusPituus, ikä, attributes);
         return character;
     }
 
@@ -71,9 +71,9 @@ public class ver1 {
         FileWriter writer = new FileWriter(fileName, true);
 
         // Write the character profile to the file
-        writer.write("Name: " + character.getName() + "\n");
-        writer.write("Class: " + character.getCharacterClass() + "\n");
-        writer.write("Level: " + character.getLevel() + "\n");
+        writer.write("Nimi: " + character.haeNimi() + "\n");
+        writer.write("Hiukset: " + character.haeHiukset() + "\n");
+        writer.write("Ikä: " + character.haeIkä() + "\n");
         for (String attributeName : character.getAttributes().keySet()) {
             writer.write(attributeName + ": " + character.getAttributes().get(attributeName) + "\n");
         }
@@ -87,28 +87,28 @@ public class ver1 {
      * Represents a character in the game.
      */
     private static class Character {
-        private String name;
-        private String characterClass;
-        private int level;
+        private String nimi;
+        private String hiusPituus;
+        private int ikä;
         private Map<String, Integer> attributes;
 
-        public Character(String name, String characterClass, int level, Map<String, Integer> attributes) {
-            this.name = name;
-            this.characterClass = characterClass;
-            this.level = level;
+        public Character(String nimi, String hiusPituus, int ikä, Map<String, Integer> attributes) {
+            this.nimi = nimi;
+            this.hiusPituus = hiusPituus;
+            this.ikä = ikä;
             this.attributes = attributes;
         }
 
-        public String getName() {
-            return name;
+        public String haeNimi() {
+            return nimi;
         }
 
-        public String getCharacterClass() {
-            return characterClass;
+        public String haeHiukset() {
+            return hiusPituus;
         }
 
-        public int getLevel() {
-            return level;
+        public int haeIkä() {
+            return ikä;
         }
 
         public Map<String, Integer> getAttributes() {
@@ -116,4 +116,3 @@ public class ver1 {
         }
     }
 }
-
