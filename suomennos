@@ -9,6 +9,8 @@ import java.util.*;
 	    private static final Scanner scanner = new Scanner(System.in);
 
 	    public static void main(String[] args) {
+	    System.out.println("Tervetuloa hahmonluomispeliin! Vastaa pelin kysymyksiin ja luo itsellesi hahmo. Lopussa ohjelma luo tiedoista tarinan, ja tulostaa sen sinulle luettavaksi. Hauskaa hahmonluomista!");
+	    
 	        try {
 	            // Luo uusi hahmoprofiili
 	            Character character = luoHahmo();
