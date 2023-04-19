@@ -70,21 +70,21 @@ public class ver1 {
         // Open the file for writing
         FileWriter writer = new FileWriter(fileName, true);
 
-        // Write the character profile to the file
+      // Kirjoittaa tiedot hahmosta erilliselle tiedostolle
         writer.write("Nimi: " + character.haeNimi() + "\n");
         writer.write("Hiukset: " + character.haeHiukset() + "\n");
         writer.write("Ikä: " + character.haeIkä() + "\n");
         for (String attributeName : character.getAttributes().keySet()) {
             writer.write(attributeName + ": " + character.getAttributes().get(attributeName) + "\n");
         }
-        writer.write("\n"); // Add a blank line after each character
+        writer.write("\n"); // Lisää tyhjän välin jokaisen merkin jälkeen
 
-        // Close the file
+        // Sulkee tiedoston
         writer.close();
     }
 
     /**
-     * Represents a character in the game.
+     * Tämä osio käsittelee hahmon piirteitä
      */
     private static class Character {
         private String nimi;
