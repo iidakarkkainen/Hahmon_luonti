@@ -74,8 +74,8 @@ import java.util.*;
         writer.write("Nimi: " + character.haeNimi() + "\n");
         writer.write("Hiukset: " + character.haeHiukset() + "\n");
         writer.write("Ikä: " + character.haeIkä() + "\n");
-        for (String attributeName : character.getAttributes().keySet()) {
-            writer.write(attributeName + ": " + character.getAttributes().get(attributeName) + "\n");
+        for (String attributeName : character.haeOminaisuudet().keySet()) {
+            writer.write(attributeName + ": " + character.haeOminaisuudet().get(OminaisuudetNimi) + "\n");
         }
         writer.write("\n"); // Lisää tyhjän välin jokaisen merkin jälkeen
 
@@ -90,13 +90,13 @@ import java.util.*;
         private String nimi;
         private String hiusPituus;
         private int ikä;
-        private Map<String, Integer> attributes;
+        private Map<String, Integer> ominaisuudet;
 
-        public Character(String nimi, String hiusPituus, int ikä, Map<String, Integer> attributes) {
+        public Character(String nimi, String hiusPituus, int ikä, Map<String, Integer> ominaisuudet) {
             this.nimi = nimi;
             this.hiusPituus = hiusPituus;
             this.ikä = ikä;
-            this.attributes = attributes;
+            this.ominaisuudet = ominaisuudet;
         }
 
         public String haeNimi() {
@@ -111,8 +111,8 @@ import java.util.*;
             return ikä;
         }
 
-        public Map<String, Integer> getAttributes() {
-            return attributes;
+        public Map<String, Integer> haeOminaisuudet() {
+            return ominaisuudet;
         }
     }
 }
