@@ -38,31 +38,31 @@ import java.util.*;
 	        System.out.print("Hiusten pituus: ");
 	        String hiusPituus = scanner.nextLine();
             
-        // Hahmon ikä
+// Hahmon ikä
         System.out.print("Ikä: ");
         int ikä = scanner.nextInt();
         scanner.nextLine();
 
         // Get the character attributes
-        Map<String, Integer> attributes = new HashMap<>();
-        String[] attributeNames = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
-        for (String attributeName : attributeNames) {
-            System.out.print(attributeName + ": ");
-            int attributeValue = scanner.nextInt();
+        Map<String, Integer> ominaisuudet = new HashMap<>();
+        String[] ominaisuudetNimi = {"Vahvuus", "Uniikkius", "Älykkyys", "Viisaus", "Karisma"};
+        for (String ominaisuudetNimet : ominaisuudetNimet) {
+            System.out.print(ominaisuudetNimet + ": ");
+            int ominaisuudetArvo = scanner.nextInt();
             scanner.nextLine();
-            attributes.put(attributeName, attributeValue);
+            ominaisuudet.put(ominaisuudetNimet, ominaisuudetArvo);
         }
 
         // Create a new character object
-        Character character = new Character(nimi, hiusPituus, ikä, attributes);
-        return character;
-    }
+        Character hahmo = new Character(nimi, hiusPituus, ikä, ominaisuudet);
+        return hahmo;
+        }
 
     /**
      * Saves the character profile to a file.
      */
-    private static void saveCharacter(Character character) throws IOException {
-        System.out.println("Saving character profile...");
+    private static void tallennaHahmo(Character hahmo) throws IOException {
+        System.out.println("Tallentaa hahmon profiilia...");
 
         // Set the file name to characters.txt
         String fileName = "src/characters.txt";
