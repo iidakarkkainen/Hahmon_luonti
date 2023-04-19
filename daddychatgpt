@@ -3,41 +3,41 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This program allows the user to create and save a character profile.
- */
-public class ver1 {
-    private static final Scanner scanner = new Scanner(System.in);
+	 *Tämä ohjelma luo ja tallentaa käyttäjän luoman oman hahmon.
+	 */
+	public class Hahamo {
+	    private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        try {
-            // Create a new character profile
-            Character character = luoHahmo();
+	    public static void main(String[] args) {
+	        try {
+	            // Luo uusi hahmoprofiili
+	            Character character = luoHahmo();
 
-            // Save the character profile to a file
-            saveCharacter(character);
+	            // Tallenna hahmon profiili tiedostoon
+	            saveCharacter(character);
 
-            System.out.println("Character profile saved successfully.");
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
+	            System.out.println("Hahmon profiili tallennettu onnistuneesti.");
+	        } catch (Exception e) {
+	            System.out.println("Virhe: " + e.getMessage());
+	        }
+	    }
 
-    /**
-     * Luo uuden hahmon käyttäjän syötteen perusteella
-     */
-    private static Character luoHahmo() {
-        System.out.println("Luo uusi hahmo");
+	    /**
+	     * Luo uuden hahmon käyttäjän syötteen perusteella
+	     */
+	    private static Character luoHahmo() {
+	        System.out.println("Luo uusi hahmo");
 
-        // Hahmon nimi
-        System.out.print("Nimi: ");
-        String nimi = scanner.nextLine();
+	        // Hahmon nimi
+	        System.out.print("Nimi: ");
+	        String nimi = scanner.nextLine();
 
-        // Hahmon hiukset
-        String[] hiukset  = {"lyhyt", "pitkä", "kalju"};
-        System.out.println("Hiusten pituus: " + Arrays.toString(hiukset));
-        System.out.print("Hiusten pituus: ");
-        String hiusPituus = scanner.nextLine();
-
+	        // Hahmon hiukset
+	        String[] hiukset  = {"lyhyt", "pitkä", "kalju"};
+	        System.out.println("Hiusten pituus: " + Arrays.toString(hiukset));
+	        System.out.print("Hiusten pituus: ");
+	        String hiusPituus = scanner.nextLine();
+            
         // Hahmon ikä
         System.out.print("Ikä: ");
         int ikä = scanner.nextInt();
