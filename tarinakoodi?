@@ -1,0 +1,35 @@
+import java.io.*;
+
+public class HahmoTarina {
+    public static void main(String[] args) {
+        try {
+            // Avaa tiedosto lukemista varten
+            BufferedReader reader = new BufferedReader(new FileReader("tarina.txt"));
+
+            // Lukee tiedoston rivi kerrallaan
+            String line = reader.readLine();
+            while (line != null) {
+                // Jos teksti sisältää merkkijonon "[nimi]", korvaa se hahmosi nimellä
+                if (line.contains("[nimi]")) {
+                    line = line.replace("[nimi]", "Sinun hahmosi nimi");
+                }
+
+                // Jos teksti sisältää merkkijonon "[ominaisuus]", korvaa se hahmosi ominaisuudella
+                if (line.contains("[ominaisuus]")) {
+                    line = line.replace("[ominaisuus]", "Sinun hahmosi ominaisuus");
+                }
+
+                // Tulosta muokattu rivi
+                System.out.println(line);
+
+                // Siirry seuraavaan riviin
+                line = reader.readLine();
+            }
+
+            // Sulje tiedosto
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Virhe: " + e.getMessage());
+        }
+    }
+}
