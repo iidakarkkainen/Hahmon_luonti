@@ -26,7 +26,7 @@ import java.io.IOException;
 	        } catch (Exception e) {
 	            System.out.println("Virhe: " + e.getMessage());
 	        }
-	
+		// tulostaa tarinan
 	        String filename = "tarina.txt";
 	        String line = "";
 	        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -110,7 +110,7 @@ import java.io.IOException;
         }
     }
      /**
-     * Tämä osio tulostaa tarinan
+     * Tämä osio kirjoittaa tarinan
      */
     private static void tulostaTarina(Character hahmo) throws IOException {
 
