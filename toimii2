@@ -61,7 +61,7 @@ import java.io.IOException;
         int ikä = scanner.nextInt();
         scanner.nextLine();
 
-        // Get the character attributes
+        // Hae hahmon ominaisuudet
         Map<String, Integer> ominaisuudet = new HashMap<>();
         String[] ominaisuudetNimi = {"Vahvuus (asteikolla 1-10)", "Uniikkius (asteikolla 1-10)",
         		"Älykkyys (asteikolla 1-10)", "Viisaus (asteikolla 1-10)",
@@ -73,7 +73,7 @@ import java.io.IOException;
             ominaisuudet.put(ominaisuudetNimet, ominaisuudetArvo);
         }
 
-        // Create a new character object
+        // Luo uusi hahmo-olio
         Character hahmo = new Character(nimi, hiusPituus, ikä, ominaisuudet);
         return hahmo;
         }
@@ -114,10 +114,10 @@ import java.io.IOException;
     }
     private static void tulostaTarinanAlku(Character hahmo) throws IOException {
 
-        // Set the file name to characters.txt
+        // Aseta tiedoston nimeksi characters.txt
         String fileName = "tarina.txt";
 
-        // Open the file for writing
+        // Avaa tiedosto kirjoitusta varten
         FileWriter writer = new FileWriter(fileName, true);
 
       // Kirjoittaa tiedot hahmosta erilliselle tiedostolle
