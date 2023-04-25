@@ -1,0 +1,147 @@
+
+import java.io.*;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+	 *Tämä ohjelma luo ja tallentaa käyttäjän luoman oman hahmon.
+	 */
+	public class toka {
+	    private static final Scanner scanner = new Scanner(System.in);
+
+	    public static void main(String[] args) {
+	    System.out.println("Tervetuloa hahmonluomispeliin! Vastaa pelin kysymyksiin ja luo itsellesi hahmo." + "\n"
+	    		+ "Lopussa ohjelma luo tiedoista tarinan, ja tulostaa sen sinulle luettavaksi." + "\n"
+	    		+ "Hauskaa hahmonluomista!");
+	    
+	        try {
+	            // Luo uusi hahmoprofiili
+	            Character character = luoHahmo();
+
+		        tulostaTarinanAlku(character);
+
+
+
+
+	        } catch (Exception e) {
+	            System.out.println("Virhe: " + e.getMessage());
+	        }
+
+	        String filename = "tarina.txt";
+	        String line = "";
+	        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+	          while ((line = br.readLine()) != null) {
+	            System.out.println(line);
+	          }
+	        } catch (IOException e) {
+	          e.printStackTrace();
+	        }
+	    }
+
+	    /**
+	     * Luo uuden hahmon käyttäjän syötteen perusteella
+	     */
+	    private static Character luoHahmo() {
+	        System.out.println("Luo uusi hahmo");
+
+	        // Hahmon nimi
+	        System.out.print("Nimi: ");
+	        String nimi = scanner.nextLine();
+
+	        // Hahmon hiukset
+	        String[] hiukset  = {"lyhyt", "pitkä", "kalju"};
+	        System.out.println("Hiusten pituus: " + Arrays.toString(hiukset));
+	        System.out.print("Hiusten pituus: ");
+	        String hiusPituus = scanner.nextLine();
+            
+// Hahmon ikä
+        System.out.print("Ikä: ");
+        int ikä = scanner.nextInt();
+        scanner.nextLine();
+
+        // Get the character attributes
+        Map<String, Integer> ominaisuudet = new HashMap<>();
+        String[] ominaisuudetNimi = {"Vahvuus (asteikolla 1-10)", "Uniikkius (asteikolla 1-10)",
+        		"Älykkyys (asteikolla 1-10)", "Viisaus (asteikolla 1-10)",
+        		"Karisma (asteikolla 1-10)"};
+        for (String ominaisuudetNimet : ominaisuudetNimi) {
+            System.out.print(ominaisuudetNimet + ": ");
+            int ominaisuudetArvo = scanner.nextInt();
+            scanner.nextLine();
+            ominaisuudet.put(ominaisuudetNimet, ominaisuudetArvo);
+        }
+
+        // Create a new character object
+        Character hahmo = new Character(nimi, hiusPituus, ikä, ominaisuudet);
+        return hahmo;
+        }
+
+
+
+    /**
+     * Tämä osio käsittelee hahmon piirteitä
+     */
+    private static class Character {
+        private String nimi;
+        private String hiusPituus;
+        private int ikä;
+        private Map<String, Integer> ominaisuudet;
+
+        public Character(String nimi, String hiusPituus, int ikä, Map<String, Integer> ominaisuudet) {
+            this.nimi = nimi;
+            this.hiusPituus = hiusPituus;
+            this.ikä = ikä;
+            this.ominaisuudet = ominaisuudet;
+        }
+
+        public String haeNimi() {
+            return nimi;
+        }
+
+        public String haeHiukset() {
+            return hiusPituus;
+        }
+
+        public int haeIkä() {
+            return ikä;
+        }
+
+        public Map<String, Integer> haeOminaisuudet() {
+            return ominaisuudet;
+        }
+    }
+    private static void tulostaTarinanAlku(Character hahmo) throws IOException {
+
+        // Set the file name to characters.txt
+        String fileName = "tarina.txt";
+
+        // Open the file for writing
+        FileWriter writer = new FileWriter(fileName, true);
+
+      // Kirjoittaa tiedot hahmosta erilliselle tiedostolle
+        writer.write("Esittelen sinulle " + hahmo.haeIkä() + "-vuotiaan sankarin nimeltä " + hahmo.haeNimi() + "\n");
+        writer.write(hahmo.haeNimi() + " on tunnettu kotikylässään, sillä hänelle ominaisuudet ovat siunautuneet seuraavasti:\n");
+        for (String ominaisuudetNimi : hahmo.haeOminaisuudet().keySet()) {
+            writer.write(ominaisuudetNimi + ": " + hahmo.haeOminaisuudet().get(ominaisuudetNimi) + "\n");
+        }
+        writer.write("Näiden ominaisuuksien avulla " + hahmo.haeNimi() + " on onnistunut nujertamaan kymmeniä kylään hyökänneitä lohikäärmeitä vuosien aikana.\n");
+        writer.write("Hänen " +  hahmo.haeHiukset() + " kuontalonsa on tunnistettavissa jo kaukaa.\n");
+        writer.write(hahmo.haeNimi() + " on todellinen sankari, joka suojelee kyläänsä ja sen asukkaita kaikin voimin.");
+        ominaisuudetTekstiksi(hahmo);
+        writer.close();
+
+    }
+
+
+    private static String ominaisuudetTekstiksi(Character hahmo) {
+        StringJoiner joiner = new StringJoiner(", ");
+        for (String ominaisuudetNimi : hahmo.haeOminaisuudet().keySet()) {
+            int ominaisuudetArvo = hahmo.haeOminaisuudet().get(ominaisuudetNimi);
+            joiner.add(String.format("%s %d", ominaisuudetNimi, ominaisuudetArvo));
+        }
+        return joiner.toString();
+    }
+}
+	
