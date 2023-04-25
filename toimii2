@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
-	 *Tämä ohjelma luo ja tallentaa käyttäjän luoman oman hahmon.
+	 *Tämä ohjelmalla käyttäjä luo hahmon ja ohjelma kertoo tarinan hahmosta.
 	 */
 	public class toka {
 	    private static final Scanner scanner = new Scanner(System.in);
@@ -20,15 +20,13 @@ import java.io.IOException;
 	            // Luo uusi hahmoprofiili
 	            Character character = luoHahmo();
 
-		        tulostaTarinanAlku(character);
-
-
+		        tulostaTarina(character);
 
 
 	        } catch (Exception e) {
 	            System.out.println("Virhe: " + e.getMessage());
 	        }
-
+	
 	        String filename = "tarina.txt";
 	        String line = "";
 	        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -79,7 +77,6 @@ import java.io.IOException;
         }
 
 
-
     /**
      * Tämä osio käsittelee hahmon piirteitä
      */
@@ -112,7 +109,10 @@ import java.io.IOException;
             return ominaisuudet;
         }
     }
-    private static void tulostaTarinanAlku(Character hahmo) throws IOException {
+     /**
+     * Tämä osio tulostaa tarinan
+     */
+    private static void tulostaTarina(Character hahmo) throws IOException {
 
         // Aseta tiedoston nimeksi characters.txt
         String fileName = "tarina.txt";
@@ -133,8 +133,9 @@ import java.io.IOException;
         writer.close();
 
     }
-
-
+ /**
+     * Tämä osio muuttaa ominaisuudet teksitmuotoon
+     */
     private static String ominaisuudetTekstiksi(Character hahmo) {
         StringJoiner joiner = new StringJoiner(", ");
         for (String ominaisuudetNimi : hahmo.haeOminaisuudet().keySet()) {
